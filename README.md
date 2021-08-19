@@ -4,8 +4,6 @@ Builds surface clutter simulations to aid in the analysis of airborne and space-
 
 ## Description
 
-***
-
 * **What is a clutter simulator?**
 
 The purpose of this program is to create surface clutter simulations to aid in the analysis of airborne and space-born sounding radar images. In the context of sounding radar, "surface clutter" refers to power reflected from off-nadir features on the surface of the body being sounded. The power reflected by these off-nadir features can reach the receiver at times similar or identical to when power reflected from subsurface interfaces would return. This creates apparently subsurface features in the radar image that are in truth from surface features, hindering interpretation. With an accurate topographic model and knowledge of spacecraft location over the course the the radar sounding, the power returned from the surface can be roughly simulated to produce an image that can be qualitatively compared to the radar image to help determine if a candidate subsurface reflector is in fact from a surface feature.
@@ -25,7 +23,6 @@ warped/shifted to be datumed to a different elevation.
 
 ## Setup / Dependencies
 
-***
 **Read [here](./environment.yml) for required external libraries:**
 
 * Use the package manager [Anaconda](https://docs.anaconda.com/anaconda/install/) to build a sim environment.
@@ -35,8 +32,6 @@ conda env create -f environment.yml
 ```
 
 ## Config File Structure
-
-***
 
 ```conf
 [paths]
@@ -91,8 +86,6 @@ tmap = [Output range migration csv]
 
 ## Running Simulations
 
-***
-
 Usage:
 
 ```bash
@@ -106,8 +99,6 @@ python3 ./simc.py ../config/sharad_fpb.cfg
 ```
 
 ## Contributing
-
-***
 
 ### [**Univerisity of Arizona | Lunar & Planetary Labs**](https://www.lpl.arizona.edu/)
 
