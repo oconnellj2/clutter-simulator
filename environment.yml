@@ -1,0 +1,9 @@
+name: sim
+dependencies:
+  - backports=1.0
+  - configparser=3.7.4
+  - gdal=2.3.3
+  - numpy=1.17.4
+  - pillow=6.2.1
+  - python=3.7.5
+  - scikit-image=0.15.0
