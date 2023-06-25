@@ -35,7 +35,7 @@ zs = float(root.find("header").find("scale").find("z").text)
 
 # Grid Params
 dx = 10
-dy = 10 
+dy = 10
 
 # No data value in grid
 ndata = -9999
@@ -46,42 +46,43 @@ data_file = File(data_path, mode='r')
 x = data_file.X*xs + xo
 y = data_file.Y*ys + yo
 z = data_file.Z*zs + zo
-#np.savetxt('pts.csv',np.vstack([x,y,z]).transpose()[0::10000],fmt="%f",delimiter=",")
+# np.savetxt('pts.csv',np.vstack([x,y,z]).transpose()[0::10000],fmt="%f",delimiter=",")
 n = len(x)
 
 ## Do the Gridding ##
 print("Mapping points to grid space...")
 # Transform x and y from xy space to grid coordinate space
-nx = np.floor_divide(x,dx).astype('int32')
-ny = np.floor_divide(y,dy).astype('int32')
+nx = np.floor_divide(x, dx).astype('int32')
+ny = np.floor_divide(y, dy).astype('int32')
 xlim = nx.min()*dx
 ylim = ny.max()*dy
 nx = np.subtract(nx, nx.min())
 ny = np.subtract(ny, ny.min())
-ny = np.subtract(ny.max(),ny)
+ny = np.subtract(ny.max(), ny)
 nz = z.astype('float32')
 
 # Make grid with no data values and a counting grid
-gdata = (np.ones((ny.max()+1,nx.max()+1))*ndata).astype('float32')
-count = np.zeros((ny.max()+1,nx.max()+1))
-#print(nx)
-#print(ny) 
+gdata = (np.ones((ny.max()+1, nx.max()+1))*ndata).astype('float32')
+count = np.zeros((ny.max()+1, nx.max()+1))
+# print(nx)
+# print(ny)
 
 pct = 0
 # Put points into the grid
 print("Gridding point data...")
 for i in range(n):
-	if(int(float(i*100)/n) > pct):
+	if (int(float(i*100)/n) > pct):
 		sys.stdout.write("\r")
 		sys.stdout.write(str(int(float(i*100)/n))+"%")
 		sys.stdout.flush()
 		pct = int(float(i*100)/n)
-	if(count[ny[i]][nx[i]] == 0):
+	if (count[ny[i]][nx[i]] == 0):
 		gdata[ny[i]][nx[i]] = nz[i]
 		count[ny[i]][nx[i]] = 1
 	else:
 		count[ny[i]][nx[i]] = count[ny[i]][nx[i]] + 1
-		gdata[ny[i]][nx[i]] = gdata[ny[i]][nx[i]]*(1-(1/count[ny[i]][nx[i]])) + nz[i]*(1/count[ny[i]][nx[i]])
+		gdata[ny[i]][nx[i]] = gdata[ny[i]][nx[i]] * \
+			(1-(1/count[ny[i]][nx[i]])) + nz[i]*(1/count[ny[i]][nx[i]])
 
 sys.stdout.write("\r")
 sys.stdout.write("100%\n")

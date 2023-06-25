@@ -1,1 +1,4 @@
-/out/
+/out
+/test/dem
+.DS_Store
+.vscode

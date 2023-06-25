@@ -4,28 +4,28 @@ Builds surface clutter simulations to aid in the analysis of airborne and space-
 
 ## Description
 
-* **What is a clutter simulator?**
+### What is a clutter simulator?
 
 The purpose of this program is to create surface clutter simulations to aid in the analysis of airborne and space-born sounding radar images. In the context of sounding radar, "surface clutter" refers to power reflected from off-nadir features on the surface of the body being sounded. The power reflected by these off-nadir features can reach the receiver at times similar or identical to when power reflected from subsurface interfaces would return. This creates apparently subsurface features in the radar image that are in truth from surface features, hindering interpretation. With an accurate topographic model and knowledge of spacecraft location over the course the the radar sounding, the power returned from the surface can be roughly simulated to produce an image that can be qualitatively compared to the radar image to help determine if a candidate subsurface reflector is in fact from a surface feature.
 
-* **Overview**
+### Overview
 
 The MultiSim Clutter Simulator (MultiSim) was written to replace UTSIM, an older clutter simulator written primarily in C to simulate clutter on Mars, specifically for the SHARAD instrument on the MRO. The motivation behind MultiSim was to write a more flexible clutter simulator that could accept many types of input data, and simulate clutter on several different planets.
 
-* **Important note about vertical datums**
-
-The navigation data, DEM, and datum information must all be from an identical vertical datum when they hit the program. Coordinate systems are not an issue, these are readily translated by the GDAL library, but vertical datums are often not included with coordinate system information, or are complex shapes (such as a geoid). Because of this, the user must make sure that all of the input data is referenced to the same vertical datum.
-
-* **Cluttergram datum**
+### Cluttergram datum
 
 Cluttergrams can be produced datumed to the transmitter, or can be
 warped/shifted to be datumed to a different elevation.
+
+### *Note: vertical datums*
+
+The navigation data, DEM, and datum information must all be from an identical vertical datum when they hit the program. Coordinate systems are not an issue, these are readily translated by the GDAL library, but vertical datums are often not included with coordinate system information, or are complex shapes (such as a geoid). Because of this, the user must make sure that all of the input data is referenced to the same vertical datum.
 
 ## Setup / Dependencies
 
 **Read [here](./environment.yml) for required external libraries:**
 
-* Use the package manager [Anaconda](https://docs.anaconda.com/anaconda/install/) to build a sim environment.
+Use the package manager [Anaconda](https://docs.anaconda.com/anaconda/install/) to build a sim environment.
 
 ```bash
 conda env create -f environment.yml
